@@ -56,7 +56,7 @@ function obtenerOrdenDetalle(){
   let array =[]
   numPedido = sessionStorage.getItem("NUM-PEDIDO")
   $.ajax({
-    url: "http://localhost:8083/api/order/"+numPedido,
+    url: "http://144.22.57.2:8083/api/order/"+numPedido,
     type: "GET",
     dataType: "json",
     success: function (json) {

@@ -44,7 +44,7 @@ const mostrarListaProductos = (producto) => {
 // peticion ajax que trae los productos
 function getProductos() {
   $.ajax({
-    url: "http://localhost:8083/api/cookware/all",
+    url: "http://144.22.57.2:8083/api/cookware/all",
     type: "GET",
     dataType: "json",
     success: function (json) {
@@ -140,7 +140,7 @@ function obtenerUsuario(b) {
 //borrar un producto
 function borrarElemento(id) {
   $.ajax({
-    url: "http://localhost:8082/api/cookware/"+id,
+    url: "http://144.22.57.2:8082/api/cookware/"+id,
     type: "DELETE",
     dataType: "json",
     contentType: "application/json",
@@ -169,7 +169,7 @@ function crearProducto(e) {
     };
     let dataToSend = JSON.stringify(data);
     $.ajax({
-      url: "http://localhost:8082/api/cookware/new",
+      url: "http://144.22.57.2:8082/api/cookware/new",
       type: "POST",
       contentType: "application/json",
       data: dataToSend,
@@ -200,7 +200,7 @@ function editarProducto(e) {
     };
     let dataToSend = JSON.stringify(data);
     $.ajax({
-      url: "http://localhost:8082/api/cookware/update",
+      url: "http://144.22.57.2:8082/api/cookware/update",
       type: "PUT",
       contentType: "application/json",
       data: dataToSend,

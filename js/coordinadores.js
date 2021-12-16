@@ -45,7 +45,7 @@ const mostrarListaPorZona = (producto) => {
 function getProductos() {
   let zona = sessionStorage.getItem("ZONA");
   $.ajax({
-    url: "http://localhost:8083/api/order/zona/" + zona,
+    url: "http://144.22.57.2:8083/api/order/zona/" + zona,
     type: "GET",
     dataType: "json",
     success: function (json) {

@@ -76,7 +76,7 @@ function realizarPedido() {
   let dataToSend = JSON.stringify(myData);
   console.log(dataToSend)
   $.ajax({
-    url: "http://localhost:8083/api/order/new",
+    url: "http://144.22.57.2:8083/api/order/new",
     type: "POST",
     dataType: "json",
     contentType: "application/json",
@@ -134,7 +134,7 @@ function obtenerAlmacenamiento() {
   for (i = 0; i < localStorage.length; i++) {
     llave[i] = localStorage.key(i);
     $.ajax({
-      url: "http://localhost:8083/api/cookware/" + llave[i],
+      url: "http://144.22.57.2:8083/api/cookware/" + llave[i],
       type: "GET",
       dataType: "json",
       success: function (json) {
@@ -151,7 +151,7 @@ function obtenerAlmacenamiento() {
   // OBTENER EL SALESMAN
   let identidad = parseInt(sessionStorage.getItem("ID"));
   $.ajax({
-    url: "http://localhost:8083/api/user/" + identidad,
+    url: "http://144.22.57.2:8083/api/user/" + identidad,
     type: "GET",
     dataType: "json",
     success: function (salesMan) {
