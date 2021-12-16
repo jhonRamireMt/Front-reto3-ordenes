@@ -76,7 +76,9 @@
     </div>
   </div><br>
 
+  
   <div class="container mt-4 shadow-lg p-2 mb-5 bg-body-rouded">
+    <h2 class="bg-success text-center text-white rounded-end">ADMINISTRACION DE USUARIOS</h2>
     <button id="btnCrear" type="button" class="btn btn-success">CREAR</button>
     <table id="tablaUsuarios" class="table mt-2 table-bordered table-striped">
       <thead>
@@ -88,7 +90,7 @@
           <th>DIRECCION</th>
           <th>TELEFONO</th>
           <th>ZONA</th>
-          <th>ROL</th>
+          <th>PERFIL</th>
           <th>BORRAR</th>
           <th>EDITAR</th>
         </tr>
@@ -99,9 +101,6 @@
 
     </table>
   </div>
-
-  
- 
 
   <div id="modal-usuario" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -122,6 +121,31 @@
             <label for="name" class="form-label"> Numero de Identificacion</label>
             <input type="number" class="form-control" name="identification" id="registroNumeroIdentificacion" required>
           </div>
+
+          <!-- año de nacimiento  Date-->
+          <div class="mb-4">
+            <label for="name" class="form-label"> Fecha de nacimiento</label>
+            <input type="Date" class="form-control" name="identification" id="registroDate" required>
+          </div>
+          <!-- mes de cumpleaños string-->
+          <div class="mb-4">
+            <label for="name" class="form-label"> Mes de cumpleaños</label>
+              <select id="registroMonth" class="form-select"  required>
+                <option selected>:</option>
+                <option value="enero">ENERO</option>
+                <option value="febrero">FEBRERO</option>
+                <option value="marzo">MARZO</option>
+                <option value="abril">ABRIL</option>
+                <option value="mayo">MAYO</option>
+                <option value="junio">JUNIO</option>
+                <option value="julio">JULIO</option>
+                <option value="agosto">AGOSTO</option>
+                <option value="septiembre">SEPTIEMBRE</option>
+                <option value="octubre">OCTUBRE</option>
+                <option value="noviembre">NOVIEMBRE</option>
+                <option value="diciembre">DICIEMBRE</option>
+              </select>
+          </div> 
           <div class="mb-4">
             <label for="name" class="form-label"> Direccion</label>
             <input type="text" class="form-control" name="address" id="registroDireccion" required>
@@ -202,6 +226,31 @@
             <label for="name" class="form-label"> Numero de Identificacion</label>
             <input type="number" class="form-control" name="identification" id="editNumeroId" required>
           </div>
+
+          <!-- año de nacimiento  Date-->
+          <div class="mb-4">
+            <label for="name" class="form-label"> Fecha de nacimiento</label>
+            <input type="Date" class="form-control" name="identification" id="editDate" required>
+          </div>
+          <!-- mes de cumpleaños string-->
+          <div class="mb-4">
+            <label for="name" class="form-label"> Mes de cumpleaños</label>
+              <select id="editMonth" class="form-select"  required>
+                <option selected>:</option>
+                <option value="enero">ENERO</option>
+                <option value="febrero">FEBRERO</option>
+                <option value="marzo">MARZO</option>
+                <option value="abril">ABRIL</option>
+                <option value="mayo">MAYO</option>
+                <option value="junio">JUNIO</option>
+                <option value="julio">JULIO</option>
+                <option value="agosto">AGOSTO</option>
+                <option value="septiembre">SEPTIEMBRE</option>
+                <option value="octubre">OCTUBRE</option>
+                <option value="noviembre">NOVIEMBRE</option>
+                <option value="diciembre">DICIEMBRE</option>
+              </select>
+          </div> 
           <div class="mb-4">
             <label for="name" class="form-label"> Direccion</label>
             <input type="text" class="form-control" name="address" id="editDir" required>

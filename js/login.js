@@ -10,8 +10,9 @@ function logIn(e){
         $.ajax({
             dataType:"json",
             typ:"GET",
-            url: "http://144.22.57.2:8082/api/user/"+email+"/"+password,
+            url: "http://localhost:8083/api/user/"+email+"/"+password,
             success:function(json){
+                
                 if(json.id == null || json.name == null){
                     $("#inicio-fail").empty();
                     $("#inicio-ok").empty();
@@ -20,29 +21,69 @@ function logIn(e){
                     $("#inicio-fail").empty();
                     $("#inicio-ok").empty();
                     $("#inicio-ok").append(json.name + " ha iniciado sesion")
-                    alert("Bienvenido al sistema " + json.name)
-                    console.log("enviando.."+json)
-                    
+                    console.log(json)
+                    alertify.success("Bienvenido al sistema "+json.name);
+                        alertify.success("Estamos direccionanado...");
                     if(json.type == "ADM"){
+                        sessionStorage.setItem("ID",json.id);
                         sessionStorage.setItem("ROL",json.type);
                         sessionStorage.setItem("ZONA",json.zone);
                         sessionStorage.setItem("DIRECCION",json.address);
                         sessionStorage.setItem("TELEFONO",json.cellPhone);
                         sessionStorage.setItem("CORREO",json.email);
                         sessionStorage.setItem("NOMBRE",json.name);
-                        window.location="./admin.html"; 
-                        alertify.success(json.name + " ha iniciado sesion");
+                        redireccionarAdmin();
                         
                     }if(json.type == "COORD"){
-                        window.location="./cordinadores.html";
-                    }if(json.type == "ASC"){
-                        window.location="./asesores.html";
+                        sessionStorage.setItem("ID",json.id);
+                        sessionStorage.setItem("ROL",json.type);
+                        sessionStorage.setItem("ZONA",json.zone);
+                        sessionStorage.setItem("DIRECCION",json.address);
+                        sessionStorage.setItem("TELEFONO",json.cellPhone);
+                        sessionStorage.setItem("CORREO",json.email);
+                        sessionStorage.setItem("NOMBRE",json.name);
+                        redireccionarCordinardor();
+                        
+                    }if(json.type == "ASE"){
+                        sessionStorage.setItem("ID",json.id);
+                        sessionStorage.setItem("ROL",json.type);
+                        sessionStorage.setItem("ZONA",json.zone);
+                        sessionStorage.setItem("DIRECCION",json.address);
+                        sessionStorage.setItem("TELEFONO",json.cellPhone);
+                        sessionStorage.setItem("CORREO",json.email);
+                        sessionStorage.setItem("NOMBRE",json.name);
+                        alertify.success("Bienvenido al sistema "+json.name);
+                        redireccionarAsesor();
                     }
                     
                 }    
             }
         }) 
     }
+}
+
+// funcion para retardar el cargado de la administradores
+function redireccionarAdmin(){
+    function retrasarCarga() {
+        window.location="./admin.html"; 
+      }
+      setTimeout(retrasarCarga, 2500);
+}
+
+// funcion para retardar el cargado de la cordinadores
+function redireccionarCordinardor(){
+    function retrasarCarga() {
+        window.location.href = "./coord.html";
+      }
+      setTimeout(retrasarCarga, 2500);
+}
+
+// funcion para retardar el cargado de la asesores
+function redireccionarAsesor(){
+    function retrasarCarga() {
+        window.location="./asesores.html"; 
+      }
+      setTimeout(retrasarCarga, 2500);
 }
 
 

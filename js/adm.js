@@ -1,4 +1,4 @@
-let usuarioAutenticado = sessionStorage.getItem("NOMBRE");
+let usuarioAutenticado = sessionStorage.getItem("ROL");
 const contenedor = document.querySelector("tbody");
 const modalUsuarios = new bootstrap.Modal(
   document.getElementById("modal-usuario")
@@ -118,7 +118,7 @@ function admin(a) {
 // peticion ajax que trae los usuarios
 function getUsers() {
   $.ajax({
-    url: "http://144.22.57.2:8082/api/user/all",
+    url: "http://localhost:8083/api/user/all",
     type: "GET",
     dataType: "json",
     success: function (json) {
@@ -133,7 +133,7 @@ function cerrarSesion() {
     "Se cerrara la sesion actual. Desea continuar?",
     function () {
       alertify.success("Operacion compaletada!");
-      sessionStorage.removeItem("NOMBRE");
+      sessionStorage.removeItem("ROL");
       location.reload();
     },
     function () {
@@ -160,7 +160,7 @@ function obtenerUsuario(b) {
 //borrar un usuario
 function borrarElemento(id) {
   $.ajax({
-    url: "http://144.22.57.2:8082/api/user/" + id,
+    url: "http://localhost:8083/api/user/" + id,
     type: "DELETE",
     dataType: "json",
     contentType: "application/json",
@@ -189,7 +189,7 @@ function setRegistro(e) {
       $.ajax({
         dataType: "json",
         typ: "GET",
-        url: "http://144.22.57.2:8082/api/user/emailexist/" + email,
+        url: "http://localhost:8083/api/user/emailexist/" + email,
         success: function (respuesta) {
           if (respuesta == true) {
             $("#error-email").empty();
@@ -200,16 +200,18 @@ function setRegistro(e) {
             let myData = {
               identification: $("#registroNumeroIdentificacion").val(),
               name: $("#registroNombre").val(),
+              birthtDay:$("#registroDate").val(),
+              monthBirthtDay:$("#registroMonth").val(),
               address: $("#registroDireccion").val(),
               cellPhone: $("#registroTelefono").val(),
               email: $("#registroEmail").val(),
-              password: $("#registro-password-1").val(),
+              password: $("#registroPassword1").val(),
               zone: $("#registroZona").val(),
               type: $("#registroRol").val(),
             };
             let dataToSend = JSON.stringify(myData);
             $.ajax({
-              url: "http://144.22.57.2:8082/api/user/new",
+              url: "http://localhost:8083/api/user/new",
               type: "POST",
               contentType: "application/json",
               dataType: "json",
@@ -244,6 +246,8 @@ function editarRegistro(e) {
         id: idForm,
         identification: $("#editNumeroId").val(),
         name: $("#editNombre").val(),
+        birthtDay:$("#editDate").val(),
+              monthBirthtDay:$("#editMonth").val(),
         address: $("#editDir").val(),
         cellPhone: $("#editTel").val(),
         email: emailForm,
@@ -254,7 +258,7 @@ function editarRegistro(e) {
       console.log(myData);
       let dataToSend = JSON.stringify(myData);
       $.ajax({
-        url: "http://144.22.57.2:8082/api/user/update",
+        url: "http://localhost:8083/api/user/update",
         type: "PUT",
         contentType: "application/json",
         dataType: "json",

@@ -71,15 +71,15 @@
   </div><br>
 
   <!-- lista de productos que aparecera en la sesion -->
-  
   <div class="container mt-4 shadow-lg p-2 mb-5 bg-body-rouded  table-responsive">
-    <h2 class="bg-success text-center text-white rounded-end">LISTA PRODUCTOS</h2>
+    <h2 class="bg-success text-center text-white rounded-end">ORDEN DE PEDIDO</h2>
     <table id="dibujarTabla" class="table table-bordered table-striped mt-2">
       <thead>
       </thead>
       <tbody id="tbody">
       </tbody>
     </table>
+    <button id="btnEnviarPedido" type="button" class="btn btn-primary align-items-stretch " onclick="realizarPedido()" >REALIZAR PEDIDO</button>
   </div>
   
 
@@ -93,13 +93,18 @@
   </div>
 
   <!-- javascript -->
+  
 
-  <script type="text/javascript" src="./js/asesores.js">
+  <script type="text/javascript" src="./js/ordenCompra.js">
 
   </script>
-  <script>
-    window.onload = getProductos();
-  </script>
+
+<script>
+  window.onload = obtenerAlmacenamiento();
+  
+</script>
+
+  
 </body>
 
 </html>
