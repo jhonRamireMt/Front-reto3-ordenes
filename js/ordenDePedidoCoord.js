@@ -11,6 +11,34 @@ function admin(a) {
   obtenerUsuario(a);
 }
 
+//mostrar elelemtos en la tabla
+const mostrarEstadoOrdenCompra = (producto) => {
+  let filas = "";
+  $("#tbodyEstado").empty();
+  producto.forEach((item) => {
+    columnas = `<tr class="text-center align-items-script">
+    <th>FECHA</th>
+    <th>No. PEDIDO</th>
+    <th>ESTADO</th>
+    <th>CAMBIAR ESTADO</th>
+    <th>GUARDAR</th>
+    </tr>`;
+    filas += `
+    <tr>
+    <td>${item.registerDay}</td>
+    <td>${item.id}</td>
+    <td>${item.status}</td>
+    <td class="text-center"><select id="cambiarEstado" class="btnVerPedido "> <option selected>:</option>
+    <option value="Pendiente">Pendiente</option>
+    <option value="Aprobado">Aprobado</option>
+    <option value="Rechazado">Rechazado</option></select></td>
+    <td class="text-center"><a onclick="enviarCambiarEstado" class="enviarCambioEstado  btn btn-success" >Guardar Estado</a></td>
+    </tr>
+    `;
+  });
+  $("#tbodyEstado").append(columnas + filas);
+};
+
 const mostrarDetallePedido = (json) => {
   let filas = "";
   let iteradorInteriorProducts = Object.values(json.products)
@@ -49,9 +77,54 @@ const on = (element, event, selector, handler) => {
   });
 };
 
+
+// OBJETO QUE ME AYUDA A CAPTURAR LOS VALORES DE LA FILA POR #ID
+on(document, "click", ".enviarCambioEstado", (e) => {
+  const fila = e.target.parentNode.parentNode;
+
+  const fecha = fila.children[0].innerHTML;
+  const numPedido = fila.children[1].innerHTML;
+  const estado = fila.children[2].innerHTML;
+  const selectEstado = fila.children[3].querySelector("#cambiarEstado").value;
+  botonGuardar = fila.children[4].innerHTML;
+  enviarCambiarEstado(numPedido,selectEstado)
+  console.log(fecha,numPedido,estado,selectEstado);
+  
+});
+
+function enviarCambiarEstado(numPedido,selectEstado){
+let objeto ={}
+  $.ajax({
+    url: "http://144.22.57.2:8083/api/order/"+numPedido,
+    type: "GET",
+    dataType: "json",
+    success: function (json) {
+      objeto = {
+        id : numPedido, 
+        Date: json.Date,
+        status: selectEstado,
+        salesMan:json.salesMan,
+        products: json.products,
+        quantities: json.quantities
+      }
+      let dataToSend = JSON.stringify(objeto);
+      console.log(dataToSend)
+      $.ajax({
+        url: "http://144.22.57.2:8083/api/order/update",
+        type: "PUT",
+        contentType: "application/json",
+        dataType: "json",
+        data:dataToSend,
+        success: function (json){
+          alertify.success("Estado del pedido No "+json.id +" ha sido actualizado!!");
+          retardar()
+        }
+      })
+    },
+  });
+}
+
 //metodo para agregar un producto a la orden de compra
-
-
 function obtenerOrdenDetalle(){
   let array =[]
   numPedido = sessionStorage.getItem("NUM-PEDIDO")
@@ -64,6 +137,7 @@ function obtenerOrdenDetalle(){
       //console.log(json);
       //console.log(array)
       mostrarDetallePedido(json);
+      mostrarEstadoOrdenCompra(array);
     },
   });
 }
@@ -97,6 +171,13 @@ function cerrarSesion() {
 
 function retardarCierreSesion() {
   alertify.success("Vuelve pronto!");
+  function retrasarCarga() {
+    location.reload();
+  }
+  setTimeout(retrasarCarga, 2000);
+}
+
+function retardar() {
   function retrasarCarga() {
     location.reload();
   }

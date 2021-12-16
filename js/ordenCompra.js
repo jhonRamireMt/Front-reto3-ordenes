@@ -63,10 +63,7 @@ function realizarPedido() {
   let nuevaCantidad = JSON.parse(cantidad);
   let nuevaCompra = JSON.parse(prodEnCompra);
   let asesor = JSON.parse(userData);
-  
   objetoProductos = Object.assign({}, nuevaCompra);
-  console.log(objetoProductos);
-
   let myData = {
     registerDay: fecha,
     salesMan: asesor,
@@ -74,7 +71,6 @@ function realizarPedido() {
     quantities:nuevaCantidad
   };
   let dataToSend = JSON.stringify(myData);
-  console.log(dataToSend)
   $.ajax({
     url: "http://144.22.57.2:8083/api/order/new",
     type: "POST",
@@ -83,8 +79,8 @@ function realizarPedido() {
     data: dataToSend,
     success: function (json) {
       alertify
-      .alert("El codigo de de tu pedido es: ", function(){
-      alertify.message('OK');
+      .alert("El codigo de de tu pedido es: " +json.id, function(){
+      alertify.message("Pedido No: "+json.id+" creado correctamente");
   });
       alertify.success("El pedido de productos se creo correctamente!");
     },
