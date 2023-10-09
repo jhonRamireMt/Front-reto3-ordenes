@@ -10,13 +10,13 @@ function logIn(e){
         $.ajax({
             dataType:"json",
             typ:"GET",
-            url: "http://144.22.57.2:8083/api/user/"+email+"/"+password,
+            url: "http://localhost:8085/api/user/"+email+"/"+password,
             success:function(json){
                 
                 if(json.id == null || json.name == null){
                     $("#inicio-fail").empty();
                     $("#inicio-ok").empty();
-                    $("#inicio-fail").append("Error al iniciar sesion: usuario o contraseña incorrecto");
+                    $("#inicio-fail").append("Error al iniciar sesion: usuario o contrUSRña incorrecto");
                 }else{
                     $("#inicio-fail").empty();
                     $("#inicio-ok").empty();
@@ -34,7 +34,7 @@ function logIn(e){
                         sessionStorage.setItem("NOMBRE",json.name);
                         redireccionarAdmin();
                         
-                    }if(json.type == "COORD"){
+                    }if(json.type == "DOC"){
                         sessionStorage.setItem("ID",json.id);
                         sessionStorage.setItem("ROL",json.type);
                         sessionStorage.setItem("ZONA",json.zone);
@@ -42,9 +42,9 @@ function logIn(e){
                         sessionStorage.setItem("TELEFONO",json.cellPhone);
                         sessionStorage.setItem("CORREO",json.email);
                         sessionStorage.setItem("NOMBRE",json.name);
-                        redireccionarCordinardor();
+                        redireccionarMedico();
                         
-                    }if(json.type == "ASE"){
+                    }if(json.type == "USR"){
                         sessionStorage.setItem("ID",json.id);
                         sessionStorage.setItem("ROL",json.type);
                         sessionStorage.setItem("ZONA",json.zone);
@@ -53,7 +53,7 @@ function logIn(e){
                         sessionStorage.setItem("CORREO",json.email);
                         sessionStorage.setItem("NOMBRE",json.name);
                         alertify.success("Bienvenido al sistema "+json.name);
-                        redireccionarAsesor();
+                        redireccionarUsuarios();
                     }
                     
                 }    
@@ -71,17 +71,17 @@ function redireccionarAdmin(){
 }
 
 // funcion para retardar el cargado de la cordinadores
-function redireccionarCordinardor(){
+function redireccionarMedico(){
     function retrasarCarga() {
-        window.location.href = "./coord.html";
+        window.location.href = "./doctores.html";
       }
       setTimeout(retrasarCarga, 2500);
 }
 
-// funcion para retardar el cargado de la asesores
-function redireccionarAsesor(){
+// funcion para retardar el cargado de la USRsores
+function redireccionarUsuarios(){
     function retrasarCarga() {
-        window.location="./asesores.html"; 
+        window.location="./usuarios.html"; 
       }
       setTimeout(retrasarCarga, 2500);
 }

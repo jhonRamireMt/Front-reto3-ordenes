@@ -19,9 +19,9 @@
   <!-- header -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-success mb-5 ">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"><img src="img/sarten-128.png" width="48px" alt=""></a>
+      <a class="navbar-brand" href="#"><img src="img/doctor-128.png" width="48px" alt=""></a>
       <div class="text-white border border-light border-5 rounded-pill shadow-lg p-3  rounded">
-        CON LA SARTEN POR EL MANGO
+        MEDICALSOFT
       </div>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,7 +30,7 @@
       <div class="collapse navbar-collapse " id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="./productos.html">Administrar Productos</a>
+            <a class="nav-link" href="./productos.html">ADMINISTRAR CITAS MEDICAS</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="./admin.html">Administrar Usuarios</a>
@@ -70,24 +70,21 @@
     </div>
   </div><br>
 
-  <!-- lista de productos que aparecera en la sesion -->
+  <!-- CITAS DISPONIBLES que aparecera en la sesion -->
   <div class="container mt-4 shadow-lg p-2 mb-5 bg-body-rouded">
-    <h2 class="bg-success text-center text-white rounded-end">ADMINISTRAR PRODUCTOS</h2>
+    <h2 class="bg-success text-center text-white rounded-end">ADMINISTRAR CITAS MEDICAS</h2>
     <button id="btnCrear" type="button" class="btn btn-success">CREAR</button>
     <table id="tablaUsuarios" class="table mt-2 table-bordered table-striped">
       <thead>
         <tr class="text-center">
-          <th>REFERENCIA</th>
-          <th>MARCA</th>
+          <th>CODIGO</th>
+          <th>MEDICO</th>
           <th>CATEGORIA</th>
-          <th>MATERIALES</th>
-          <th>DIMENSIONES</th>
+          <th>ESPECIALIDAD</th>
           <th>DESCRIPCION</th>
           <th>DISPONIBILIDAD</th>
           <th>PRECIO</th>
-          <th>CANTIDAD</th>
-          <th>BORRAR</th>
-          <th>EDITAR</th>
+          <th>FECHA</th>
         </tr>
       </thead>
       <tbody>
@@ -104,26 +101,23 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header bg-success text-white">
-          <h5 class="modal-title" id="exampleModalLabel">CREAR</h5>
+          <h5 class="modal-title" id="exampleModalLabel">CREAR CITA</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <!-- formulario crear producto -->
         <form id="formCrearProducto" class="registro-form">
-          <h2 class="fw:bold text-center py-5">CREAR PRODUCTO</h2>
+          <h2 class="fw:bold text-center py-5">CREAR CITA</h2>
           
           <div class="mb-4">
             <label for="name" class="form-label"> Referencia</label>
             <input type="text" class="form-control" name="reference" id="crearReferencia" required>
           </div>
           <div class="mb-4">
-            <label for="name" class="form-label"> Materiales</label>
-            <input type="text" class="form-control" name="materiales" id="crearMateriales" required>
+            <label for="name" class="form-label"> Nombre del Medico</label>
+            <input type="text" class="form-control" name="name" id="crearNombre" required>
           </div>
-          <div class="mb-4">
-            <label for="name" class="form-label"> Dimensiones</label>
-            <input type="text" class="form-control" name="dimensiones" id="crearDimensiones" required>
-          </div>
+
           <div class="mb-4">
             <label for="name" class="form-label"> Descripcion</label>
             <input type="text" class="form-control" name="description" id="crearDescripcion" required>
@@ -135,8 +129,8 @@
           </div>
 
           <div class="mb-4">
-            <label for="name" class="form-label"> Cantidad</label>
-            <input type="number" class="form-control" name="quantity" id="crearCantidad" required>
+            <label for="name" class="form-label"> Fecha</label>
+            <input type="date" class="form-control" name="date" id="crearFecha" required>
           </div>
 
           <!-- disponiblidad -->
@@ -151,14 +145,14 @@
                    
           <!-- marcas -->
           <div class="mb-4">
-            <label for="name" class="form-label"> Marca</label>
-              <select id="crearMarca" class="form-select"  required>
+            <label for="name" class="form-label"> Especialidad</label>
+              <select id="crearEspecialidad" class="form-select"  required>
                 <option selected>:</option>
-                <option value="ACME">ACME</option>
-                <option value="POWER COOK">POWER COOK</option>
-                <option value="POWER FROST">POWER FROST</option>
-                <option value="IMUSA">IMUSA</option>
-                <option value="UNIVERSAL">UNIVERSAL</option>
+                <option value="MEDICINA GENERAL">MEDICINA GENERAL</option>
+                <option value="CARDIOLOGIA">CARDIOLOGIA</option>
+                <option value="PEDIATRIA">PEDIATRIA</option>
+                <option value="GASTROENTEROLOGIA">GASTROENTEROLOGIA</option>
+                <option value="NEUMOLOGIA">NEUMOLOGIA</option>
               </select>
           </div> 
 
@@ -167,9 +161,9 @@
             <label for="name" class="form-label"> Categoria</label>
               <select id="crearCategoria" class="form-select" required>
                 <option selected>:</option>
-                <option value="OLLAS">OLLAS</option>
-                <option value="BATERIA COCINA">BATERIA COCINA</option>
-                <option value="SARTENES">SARTENES</option>
+                <option value="URGENCIAS">Urgencias</option>
+                <option value="MEDICO EN CASA">Medico en Casa</option>
+                <option value="TELEMEDICINA">Telemedicina</option>
               </select>
           </div> 
 
@@ -188,40 +182,36 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header bg-success text-white">
-          <h5 class="modal-title" id="exampleModalLabel">EDITAR</h5>
+          <h5 class="modal-title" id="exampleModalLabel">EDITAR CITA</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          
-        <!-- formulario editar -->
-        <form id="formEditarProducto" class="registro-form">
-          <h2 class="fw:bold text-center py-5">EDITAR PRODUCTO</h2>
+          <!-- formulario crear producto -->
+        <form id="formCrearProducto" class="registro-form">
+          <h2 class="fw:bold text-center py-5">EDITAR CITA</h2>
           
           <div class="mb-4">
             <label for="name" class="form-label"> Referencia</label>
-            <input type="text" class="form-control" name="reference" id="editReferencia" disabled>
+            <input type="text" class="form-control" name="reference" id="editarReferencia" required>
           </div>
           <div class="mb-4">
-            <label for="name" class="form-label"> Materiales</label>
-            <input type="text" class="form-control" name="materiales" id="editMateriales" required>
+            <label for="name" class="form-label"> Nombre del Medico</label>
+            <input type="text" class="form-control" name="name" id="editarNombre" required>
           </div>
-          <div class="mb-4">
-            <label for="name" class="form-label"> Dimensiones</label>
-            <input type="text" class="form-control" name="dimensiones" id="editDimensiones" required>
-          </div>
+
           <div class="mb-4">
             <label for="name" class="form-label"> Descripcion</label>
-            <input type="text" class="form-control" name="description" id="editDescripcion" required>
+            <input type="text" class="form-control" name="description" id="editarDescripcion" required>
           </div>
 
           <div class="mb-4">
             <label for="name" class="form-label"> Precio</label>
-            <input type="number" class="form-control" name="price" id="editPrecio" required>
+            <input type="number" class="form-control" name="price" id="editarPrecio" required>
           </div>
 
           <div class="mb-4">
-            <label for="name" class="form-label"> Cantidad</label>
-            <input type="number" class="form-control" name="quantity" id="editCantidad" required>
+            <label for="name" class="form-label"> Fecha</label>
+            <input type="date" class="form-control" name="date" id="editarFecha" required>
           </div>
 
           <!-- disponiblidad -->
@@ -236,14 +226,14 @@
                    
           <!-- marcas -->
           <div class="mb-4">
-            <label for="name" class="form-label"> Marca</label>
-              <select id="editarMarca" class="form-select"  required>
+            <label for="name" class="form-label"> Especialidad</label>
+              <select id="editarEspecialidad" class="form-select"  required>
                 <option selected>:</option>
-                <option value="ACME">ACME</option>
-                <option value="POWER COOK">POWER COOK</option>
-                <option value="POWER FROST">POWER FROST</option>
-                <option value="IMUSA">IMUSA</option>
-                <option value="UNIVERSAL">UNIVERSAL</option>
+                <option value="MEDICINA GENERAL">MEDICINA GENERAL</option>
+                <option value="CARDIOLOGIA">CARDIOLOGIA</option>
+                <option value="PEDIATRIA">PEDIATRIA</option>
+                <option value="GASTROENTEROLOGIA">GASTROENTEROLOGIA</option>
+                <option value="NEUMOLOGIA">NEUMOLOGIA</option>
               </select>
           </div> 
 
@@ -252,17 +242,18 @@
             <label for="name" class="form-label"> Categoria</label>
               <select id="editarCategoria" class="form-select" required>
                 <option selected>:</option>
-                <option value="OLLAS">OLLAS</option>
-                <option value="BATERIA COCINA">BATERIA COCINA</option>
-                <option value="SARTENES">SARTENES</option>
+                <option value="URGENCIAS">Urgencias</option>
+                <option value="MEDICO EN CASA">Medico en Casa</option>
+                <option value="TELEMEDICINA">Telemedicina</option>
               </select>
           </div> 
 
           <div class="d-grid">
             <button onclick="editarProducto(event)" class=" align-center btn btn-primary "> Enviar</button>
           </div>
+
         </form>
-         
+                 
         </div>
       </div>
     </div>
@@ -272,7 +263,7 @@
   <div class="container mt-5">
     <div class="col">
       <div class="row">
-        &copy; Con La Sarten Por El Mango - 2021
+        &copy; MedicalSoft - 2023
       </div>
     </div>
   </div>

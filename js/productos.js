@@ -6,14 +6,13 @@ const modalProducto = new bootstrap.Modal(
 const modalEdit = new bootstrap.Modal(document.getElementById("modalEditProducto"));
 //const fromulario = document.getElementById("form-usuarios");
 let referencia = document.getElementById("crearReferencia");
-let marca = document.getElementById("crearMarca");
+let nombre = document.getElementById("crearNombre");
 let categoria = document.getElementById("crearCategoria");
-let materiales = document.getElementById("crearMateriales");
-let dimensiones = document.getElementById("crearDimensiones");
+let especialidad = document.getElementById("crearEspecialidad");
 let descripcion = document.getElementById("crearDescripcion");
 let disponibilidad = document.getElementById("crearDisponibilidad");
 let precio = document.getElementById("crearPrecio");
-let cantidad = document.getElementById("crearCantidad");
+let fecha = document.getElementById("crearFecha");
 let opcion = "";
 let resultados = "";
 
@@ -23,14 +22,13 @@ const mostrar = (producto) => {
     resultados += `
                 <tr>
                     <td>${item.reference}</td>
-                    <td>${item.brand}</td>
+                    <td>${item.name}</td>
                     <td>${item.category}</td>
-                    <td>${item.materiales}</td>
-                    <td>${item.dimensiones}</td>
+                    <td>${item.speciality}</td>
                     <td>${item.description}</td>
                     <td>${item.availability}</td>
                     <td>${item.price}</td>
-                    <td>${item.quantity}</td>
+                    <td>${item.date}</td>
                     <td class="text-center"><a class="btnBorrar btn btn-danger">borrar</a></td>
                     <td class="text-center"><a class="btnEditar btn btn-primary">editar</a></td>
                 </tr>
@@ -66,53 +64,41 @@ on(document, "click", ".btnBorrar", (e) => {
   );
 });
 
-//metodo para editar usuario
+//metodo para editar producto
 let referenciaForm = 0;
 on(document, "click", ".btnEditar", (e) => {
   const fila = e.target.parentNode.parentNode;
   referenciaForm = fila.children[0].innerHTML;
-  const marcaForm = fila.children[1].innerHTML;
+  const nombreForm = fila.children[1].innerHTML;
   const categoriaForm = fila.children[2].innerHTML;
-  const materialesForm = fila.children[3].innerHTML;
-  const dimensionesForm = fila.children[4].innerHTML;
-  const descripcionForm = fila.children[5].innerHTML;
-  const disponibilidadForm = fila.children[6].innerHTML;
-  const precioForm = fila.children[7].innerHTML;
-  const cantidadForm = fila.children[8].innerHTML;
+  const especialidadForm = fila.children[3].innerHTML;
+  const descripcionForm = fila.children[4].innerHTML;
+  const disponibilidadForm = fila.children[5].innerHTML;
+  const precioForm = fila.children[6].innerHTML;
+  const fechaForm = fila.children[7].innerHTML;
  
-  editReferencia.value = referenciaForm
-  editarMarca.value = marcaForm
+  editarReferencia.value = referenciaForm
+  editarNombre.value = nombreForm
   editarCategoria.value = categoriaForm
-  editMateriales.value = materialesForm
-  editDimensiones.value = dimensionesForm
-  editDescripcion.value = descripcionForm
+  editarEspecialidad.value = especialidadForm
+  editarDescripcion.value = descripcionForm
   editarDisponibilidad.value = disponibilidadForm
-  editPrecio.value = precioForm
-  editCantidad.value = cantidadForm
+  editarPrecio.value = precioForm
+  editarFecha.value = fechaForm
   opcion = "editar";
   modalEdit.show();
-  console.log(editReferencia.value );
-  console.log(editarMarca.value);
-  console.log(editarCategoria.value);
-  console.log(editMateriales.value);
-  console.log(editDimensiones.value);
-  console.log(editDescripcion.value);
-  console.log(editarDisponibilidad.value);
-  console.log(editPrecio.value);
-  console.log(editCantidad.value);
 });
 
-// boton crear nuevos usuarios y limpiar campos
+// boton crear nuevos productos  y limpiar campos
 btnCrear.addEventListener("click", () => {
   referencia.value = "";
-  marca.value = "";
+  nombre.value = "";
   categoria.value = "";
-  materiales.value = "";
-  dimensiones.value = "";
+  especialidad.value = "";
   descripcion.value = "";
   disponibilidad.value = "";
   precio.value = "";
-  cantidad.value = "";
+  fecha.value = "";
   modalProducto.show();
   opcion = "crear";
 });
@@ -132,7 +118,7 @@ function admin(a) {
 // peticion ajax que trae los usuarios
 function getProductos() {
   $.ajax({
-    url: "http://144.22.57.2:8083/api/cookware/all",
+    url: "http://localhost:8085/api/product/all",
     type: "GET",
     dataType: "json",
     success: function (json) {
@@ -173,7 +159,7 @@ function obtenerUsuario(b) {
 //borrar un producto
 function borrarElemento(id) {
   $.ajax({
-    url: "http://144.22.57.2:8083/api/cookware/" + id,
+    url: "http://localhost:8085/api/product/" + id,
     type: "DELETE",
     dataType: "json",
     contentType: "application/json",
@@ -191,18 +177,17 @@ function crearProducto(e) {
     e.preventDefault();
     let data={
         reference: d.getElementById("crearReferencia").value,
-        brand: d.getElementById("crearMarca").value,
+        name: d.getElementById("crearNombre").value,
         category: d.getElementById("crearCategoria").value,
-        materiales: d.getElementById("crearMateriales").value,
-        dimensiones: d.getElementById("crearDimensiones").value,
+        speciality: d.getElementById("crearEspecialidad").value,
         description: d.getElementById("crearDescripcion").value,
         availability: d.getElementById("crearDisponibilidad").value,
         price: d.getElementById("crearPrecio").value,
-        quantity: d.getElementById("crearCantidad").value,
+        date: d.getElementById("crearFecha").value,
     }
     let dataToSend = JSON.stringify(data);
     $.ajax({
-        url: "http://144.22.57.2:8083/api/cookware/new",
+        url: "http://localhost:8085/api/product/new",
         type:"POST",
         contentType: "application/json",
         data: dataToSend,
@@ -222,18 +207,17 @@ function editarProducto(e) {
     e.preventDefault();
     let data={
         reference: referenciaForm,
-        brand: d.getElementById("editarMarca").value,
+        name: d.getElementById("editarNombre").value,
         category: d.getElementById("editarCategoria").value,
-        materiales: d.getElementById("editMateriales").value,
-        dimensiones: d.getElementById("editDimensiones").value,
-        description: d.getElementById("editDescripcion").value,
+        speciality: d.getElementById("editarEspecialidad").value,
+        description: d.getElementById("editarDescripcion").value,
         availability: d.getElementById("editarDisponibilidad").value,
-        price: d.getElementById("editPrecio").value,
-        quantity: d.getElementById("editCantidad").value,
+        price: d.getElementById("editarPrecio").value,
+        date: d.getElementById("editarFecha").value,
     }
        let dataToSend = JSON.stringify(data);
     $.ajax({
-        url: "http://144.22.57.2:8083/api/cookware/update",
+        url: "http://localhost:8085/api/product/update",
         type:"PUT",
         contentType: "application/json",
         data: dataToSend,

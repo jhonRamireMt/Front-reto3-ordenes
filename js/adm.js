@@ -118,7 +118,7 @@ function admin(a) {
 // peticion ajax que trae los usuarios
 function getUsers() {
   $.ajax({
-    url: "http://144.22.57.2:8083/api/user/all",
+    url: "http://localhost:8085/api/user/all",
     type: "GET",
     dataType: "json",
     success: function (json) {
@@ -160,7 +160,7 @@ function obtenerUsuario(b) {
 //borrar un usuario
 function borrarElemento(id) {
   $.ajax({
-    url: "http://144.22.57.2:8083/api/user/" + id,
+    url: "http://localhost:8085/api/user/" + id,
     type: "DELETE",
     dataType: "json",
     contentType: "application/json",
@@ -182,14 +182,14 @@ function setRegistro(e) {
     if ($("#registroPassword1").val() == $("#registroPassword2").val()) {
       $("#error").empty();
       $("#ok").empty();
-      $("#ok").append("Perfecto: Las contraseñas coinciden");
+      $("#ok").append("Perfecto: Las contrUSRñas coinciden");
       $("#ok").empty();
-      $("#ok").append("Contraseñas son Identicas");
+      $("#ok").append("ContrUSRñas son Identicas");
       let email = $("#registroEmail").val();
       $.ajax({
         dataType: "json",
         typ: "GET",
-        url: "http://144.22.57.2:8083/api/user/emailexist/" + email,
+        url: "http://localhost:8085/api/user/emailexist/" + email,
         success: function (respuesta) {
           if (respuesta == true) {
             $("#error-email").empty();
@@ -211,7 +211,7 @@ function setRegistro(e) {
             };
             let dataToSend = JSON.stringify(myData);
             $.ajax({
-              url: "http://144.22.57.2:8083/api/user/new",
+              url: "http://localhost:8085/api/user/new",
               type: "POST",
               contentType: "application/json",
               dataType: "json",
@@ -231,7 +231,7 @@ function setRegistro(e) {
     } else {
       $("#ok").empty();
       $("#error").empty();
-      $("#error").append("ERROR: Las contraseñas no coinciden");
+      $("#error").append("ERROR: Las contrUSRñas no coinciden");
     }
   });
 }
@@ -258,7 +258,7 @@ function editarRegistro(e) {
       console.log(myData);
       let dataToSend = JSON.stringify(myData);
       $.ajax({
-        url: "http://144.22.57.2:8083/api/user/update",
+        url: "http://localhost:8085/api/user/update",
         type: "PUT",
         contentType: "application/json",
         dataType: "json",
