@@ -118,7 +118,7 @@ function admin(a) {
 // peticion ajax que trae los usuarios
 function getProductos() {
   $.ajax({
-    url: "http://54.236.4.112:8085/api/product/all",
+    url: "http://localhost:8085/api/product/all",
     type: "GET",
     dataType: "json",
     success: function (json) {
@@ -159,7 +159,7 @@ function obtenerUsuario(b) {
 //borrar un producto
 function borrarElemento(id) {
   $.ajax({
-    url: "http://54.236.4.112:8085/api/product/" + id,
+    url: "http://localhost:8085/api/product/" + id,
     type: "DELETE",
     dataType: "json",
     contentType: "application/json",
@@ -187,7 +187,7 @@ function crearProducto(e) {
     }
     let dataToSend = JSON.stringify(data);
     $.ajax({
-        url: "http://54.236.4.112:8085/api/product/new",
+        url: "http://localhost:8085/api/product/new",
         type:"POST",
         contentType: "application/json",
         data: dataToSend,
@@ -217,7 +217,7 @@ function editarProducto(e) {
     }
        let dataToSend = JSON.stringify(data);
     $.ajax({
-        url: "http://54.236.4.112:8085/api/product/update",
+        url: "http://localhost:8085/api/product/update",
         type:"PUT",
         contentType: "application/json",
         data: dataToSend,

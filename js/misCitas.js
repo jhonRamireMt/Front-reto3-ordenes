@@ -80,7 +80,7 @@ function realizarPedido() {
   let dataToSend = JSON.stringify(myData);
   console.log(dataToSend)
   $.ajax({
-    url: "http://54.236.4.112:8085/api/order/new",
+    url: "http://localhost:8085/api/order/new",
     type: "POST",
     dataType: "json",
     contentType: "application/json",
@@ -139,7 +139,7 @@ function obtenerAlmacenamiento() {
   for (i = 0; i < localStorage.length; i++) {
     llave[i] = localStorage.key(i);
     $.ajax({
-      url: "http://54.236.4.112:8085/api/product/" + llave[i],
+      url: "http://localhost:8085/api/product/" + llave[i],
       type: "GET",
       dataType: "json",
       success: function (json) {
@@ -158,7 +158,7 @@ function obtenerAlmacenamiento() {
   // OBTENER EL SALESMAN
   let identidad = parseInt(sessionStorage.getItem("ID"));
   $.ajax({
-    url: "http://54.236.4.112:8085/api/user/" + identidad,
+    url: "http://localhost:8085/api/user/" + identidad,
     type: "GET",
     dataType: "json",
     success: function (salesMan) {

@@ -10,7 +10,7 @@ function logIn(e){
         $.ajax({
             dataType:"json",
             typ:"GET",
-            url: "http://54.236.4.112:8085/api/user/"+email+"/"+password,
+            url: "http://localhost:8085/api/user/"+email+"/"+password,
             success:function(json){
                 
                 if(json.id == null || json.name == null){
