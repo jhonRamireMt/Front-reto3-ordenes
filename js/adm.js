@@ -118,7 +118,7 @@ function admin(a) {
 // peticion ajax que trae los usuarios
 function getUsers() {
   $.ajax({
-    url: "http://localhost:8085/api/user/all",
+    url: "http://54.236.4.112:8085/api/user/all",
     type: "GET",
     dataType: "json",
     success: function (json) {
@@ -160,7 +160,7 @@ function obtenerUsuario(b) {
 //borrar un usuario
 function borrarElemento(id) {
   $.ajax({
-    url: "http://localhost:8085/api/user/" + id,
+    url: "http://54.236.4.112:8085/api/user/" + id,
     type: "DELETE",
     dataType: "json",
     contentType: "application/json",
@@ -189,7 +189,7 @@ function setRegistro(e) {
       $.ajax({
         dataType: "json",
         typ: "GET",
-        url: "http://localhost:8085/api/user/emailexist/" + email,
+        url: "http://54.236.4.112:8085/api/user/emailexist/" + email,
         success: function (respuesta) {
           if (respuesta == true) {
             $("#error-email").empty();
@@ -211,7 +211,7 @@ function setRegistro(e) {
             };
             let dataToSend = JSON.stringify(myData);
             $.ajax({
-              url: "http://localhost:8085/api/user/new",
+              url: "http://54.236.4.112:8085/api/user/new",
               type: "POST",
               contentType: "application/json",
               dataType: "json",
@@ -258,7 +258,7 @@ function editarRegistro(e) {
       console.log(myData);
       let dataToSend = JSON.stringify(myData);
       $.ajax({
-        url: "http://localhost:8085/api/user/update",
+        url: "http://54.236.4.112:8085/api/user/update",
         type: "PUT",
         contentType: "application/json",
         dataType: "json",
