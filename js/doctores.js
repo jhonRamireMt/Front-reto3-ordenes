@@ -47,7 +47,7 @@ function getProductos() {
   let zona = sessionStorage.getItem("ZONA");
   console.log(zona)
   $.ajax({
-    url: "http://localhost:8085/api/order/zona/" + zona,
+    url: "http://54.236.4.112:8085/api/order/zona/" + zona,
     type: "GET",
     dataType: "json",
     success: function (json) {

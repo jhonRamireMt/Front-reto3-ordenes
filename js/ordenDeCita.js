@@ -88,7 +88,7 @@ on(document, "click", ".enviarCambioEstado", (e) => {
 function enviarCambiarEstado(numPedido,selectEstado){
 let objeto ={}
   $.ajax({
-    url: "http://localhost:8085/api/order/"+numPedido,
+    url: "http://54.236.4.112:8085/api/order/"+numPedido,
     type: "GET",
     dataType: "json",
     success: function (json) {
@@ -103,7 +103,7 @@ let objeto ={}
       let dataToSend = JSON.stringify(objeto);
       console.log(dataToSend)
       $.ajax({
-        url: "http://localhost:8085/api/order/update",
+        url: "http://54.236.4.112:8085/api/order/update",
         type: "PUT",
         contentType: "application/json",
         dataType: "json",
@@ -122,7 +122,7 @@ function obtenerOrdenDetalle(){
   let array =[]
   numPedido = sessionStorage.getItem("NUM-PEDIDO")
   $.ajax({
-    url: "http://localhost:8085/api/order/"+numPedido,
+    url: "http://54.236.4.112:8085/api/order/"+numPedido,
     type: "GET",
     dataType: "json",
     success: function (json) {
